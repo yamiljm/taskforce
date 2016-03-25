@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  validationRegex: MyString
+  required: false
+  step_definition_id: 1
+  errorMessage: MyString
+  order: 1
+
+two:
+  name: MyString
+  type: 
+  validationRegex: MyString
+  required: false
+  step_definition_id: 1
+  errorMessage: MyString
+  order: 1

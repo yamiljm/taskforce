@@ -1,0 +1,37 @@
+<h1>Listing field_definitions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Validationregex</th>
+      <th>Required</th>
+      <th>Step definition</th>
+      <th>Errormessage</th>
+      <th>Order</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @field_definitions.each do |field_definition| %>
+      <tr>
+        <td><%= field_definition.name %></td>
+        <td><%= field_definition.field_type %></td>
+        <td><%= field_definition.validationRegex %></td>
+        <td><%= field_definition.required %></td>
+        <td><%= field_definition.step_definition_id %></td>
+        <td><%= field_definition.errorMessage %></td>
+        <td><%= field_definition.order %></td>
+        <td><%= link_to 'Show', field_definition %></td>
+        <td><%= link_to 'Edit', edit_field_definition_path(field_definition) %></td>
+        <td><%= link_to 'Destroy', field_definition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Field definition', new_field_definition_path %>

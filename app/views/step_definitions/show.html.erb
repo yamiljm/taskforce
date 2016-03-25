@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @step_definition.task_id %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @step_definition.order %>
+</p>
+
+<%= link_to 'Edit', edit_step_definition_path(@step_definition) %> |
+<%= link_to 'Back', step_definitions_path %>

@@ -1,0 +1,27 @@
+<h1>Listing step_definitions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Order</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @step_definitions.each do |step_definition| %>
+      <tr>
+        <td><%= step_definition.task_id %></td>
+        <td><%= step_definition.order %></td>
+        <td><%= link_to 'Show', step_definition %></td>
+        <td><%= link_to 'Edit', edit_step_definition_path(step_definition) %></td>
+        <td><%= link_to 'Destroy', step_definition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Step definition', new_step_definition_path %>

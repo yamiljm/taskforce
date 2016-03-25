@@ -1,0 +1,25 @@
+<%= form_for(@step_definition) do |f| %>
+  <% if @step_definition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@step_definition.errors.count, "error") %> prohibited this step_definition from being saved:</h2>
+
+      <ul>
+      <% @step_definition.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :task_id %><br>
+    <%= f.number_field :task_id %>
+  </div>
+  <div class="field">
+    <%= f.label :order %><br>
+    <%= f.number_field :order %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
