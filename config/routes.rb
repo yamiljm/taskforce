@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :task_definitions
+
+  resources :users do
+    resources :tasks
+  end
 
   resources :field_definitions
 
