@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :steps
+
   resources :task_definitions
 
   resources :users do
