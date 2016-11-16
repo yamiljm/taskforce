@@ -1,5 +1,12 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery
+  skip_before_action :verify_authenticity_token, if: :json_request?
+  
+  #protected
+  def json_request?
+    request.format.json?
+  end
 
   # GET /tasks
   # GET /tasks.json
@@ -27,11 +34,11 @@ class TasksController < ApplicationController
         end
         render json: tareas.to_json
       end
-      format.html do
+      format.html dos
         logger.info("respondio a html")
         #render index
       end
-    end
+   # end
     
   end
 
@@ -53,8 +60,7 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(task_params)
-
+    @task = Task.new(task_params)  
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
