@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @field.name %>
+</p>
+
+<p>
+  <strong>Fieldtype:</strong>
+  <%= @field.fieldType %>
+</p>
+
+<p>
+  <strong>Validationregex:</strong>
+  <%= @field.validationRegex %>
+</p>
+
+<p>
+  <strong>Required:</strong>
+  <%= @field.required %>
+</p>
+
+<p>
+  <strong>Errormessage:</strong>
+  <%= @field.errorMessage %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @field.order %>
+</p>
+
+<p>
+  <strong>Step:</strong>
+  <%= @field.step %>
+</p>
+
+<%= link_to 'Edit', edit_field_path(@field) %> |
+<%= link_to 'Back', fields_path %>
