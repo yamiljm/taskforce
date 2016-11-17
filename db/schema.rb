@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116200844) do
+ActiveRecord::Schema.define(version: 20161117155752) do
 
   create_table "field_definitions", force: true do |t|
     t.string   "name"
@@ -25,19 +25,8 @@ ActiveRecord::Schema.define(version: 20161116200844) do
     t.datetime "updated_at"
   end
 
-  create_table "fields", force: true do |t|
-    t.string   "name"
-    t.string   "fieldType"
-    t.string   "validationRegex"
-    t.boolean  "required"
-    t.string   "errorMessage"
-    t.integer  "order"
-    t.integer  "step_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "fields", ["step_id"], name: "index_fields_on_step_id"
+# Could not dump table "fields" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "step_definitions", force: true do |t|
     t.integer  "task_id"
@@ -46,14 +35,8 @@ ActiveRecord::Schema.define(version: 20161116200844) do
     t.datetime "updated_at"
   end
 
-  create_table "steps", force: true do |t|
-    t.integer  "order"
-    t.integer  "task_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "steps", ["task_id"], name: "index_steps_on_task_id"
+# Could not dump table "steps" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "task_definitions", force: true do |t|
     t.string   "name"
