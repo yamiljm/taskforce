@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.includes([stepDefinitions: :fieldDefinitions]).all
+    @tasks = Task.includes([steps: :fields]).all
     respond_to do |format|
       format.json do
         tareas = []
@@ -15,15 +15,15 @@ class TasksController < ApplicationController
           tarea[:description] = t.description
           tarea[:status] = t.status
           tarea[:type] = t.task_type
-          fieldDefinitions = []
-          t.stepDefinitions.each do |step|
+          fields = []
+          t.steps.each do |step|
             logger.info("step: " + step.to_json)
-            step.fieldDefinitions.each do |field|
-              fieldDefinitions.push(field)
+            step.fields.each do |field|
+              fields.push(field)
             end
           end
-          tarea[:stepDefinitions] = {}
-          tarea[:stepDefinitions][:fieldDefinitions]= fieldDefinitions
+          tarea[:steps] = {}
+          tarea[:steps][:fields]= fields
           tareas.push(tarea)
         end
         render json: tareas.to_json
