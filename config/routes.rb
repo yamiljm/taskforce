@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resources :task_definitions
 
   resources :users do
-    resources :tasks
+    resources :tasks do
+      resources :steps do 
+        resources :fields
+      end
+    end
   end
 
   resources :field_definitions

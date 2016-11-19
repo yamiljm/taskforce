@@ -10,6 +10,7 @@
       <th>Errormessage</th>
       <th>Order</th>
       <th>Step</th>
+      <th>Value</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,6 +25,7 @@
         <td><%= field.errorMessage %></td>
         <td><%= field.order %></td>
         <td><%= field.step %></td>
+        <td><%= field.value %></td>
         <td><%= link_to 'Show', field %></td>
         <td><%= link_to 'Edit', edit_field_path(field) %></td>
         <td><%= link_to 'Destroy', field, method: :delete, data: { confirm: 'Are you sure?' } %></td>

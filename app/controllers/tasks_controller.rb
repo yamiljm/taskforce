@@ -5,36 +5,53 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.includes([steps: :fields]).all
-    respond_to do |format|
-      format.json do
-        tareas = []
-        @tasks.each do |t|
-          tarea = {}
-          tarea[:currentStep] = t.currentStep
-          tarea[:description] = t.description
-          tarea[:status] = t.status
-          tarea[:type] = t.task_type
-          fields = []
-          t.steps.each do |step|
-            logger.info("step: " + step.to_json)
-            step.fields.each do |field|
-              fields.push(field)
-            end
-          end
-          tarea[:steps] = {}
-          tarea[:steps][:fields]= fields
-          tareas.push(tarea)
-        end
-        render json: tareas.to_json
+
+    if params[:user_id] 
+      user = User.find(params[:user_id])
+      puts user.to_yaml
+      if user != nil
+        @tasks = user.tasks
+        puts @tasks.to_yaml
+      else
+        puts "task VACIOOOOOOO"
+        @tasks = []
       end
-      format.html do
-        logger.info("respondio a html")
-        #render index
-      end
-   # end
-    
+    else 
+      @tasks = Task.all #Task.includes([steps: :fields]).all
     end
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Wrong post it"
+      redirect_to tasks_url
+      # redirect_to :action => 'index'
+   #  respond_to do |format|
+   #    format.json do
+   #      tareas = []
+   #      @tasks.each do |t|
+   #        tarea = {}
+   #        tarea[:currentStep] = t.currentStep
+   #        tarea[:description] = t.description
+   #        tarea[:status] = t.status
+   #        tarea[:type] = t.task_type 
+   #        fields = []
+   #        t.steps.each do |step|
+   #          logger.info("step: " + step.to_json)
+   #          step.fields.each do |field|
+   #            fields.push(field)
+   #          end
+   #        end
+   #        tarea[:steps] = {}
+   #        tarea[:steps][:field]= fields
+   #        tareas.push(tarea)
+   #      end
+   #      render json: tareas.to_json
+   #    end
+   #    format.html do
+   #      logger.info("respondio a html")
+   #      #render index
+   #    end
+   # # end
+    
+   #  end
   end
 
   # GET /tasks/1

@@ -10,6 +10,17 @@ class StepsController < ApplicationController
   # GET /steps/1
   # GET /steps/1.json
   def show
+    respond_to do |format|
+        format.json { render :json => 
+                                      @step.to_json(:include => 
+                                                              {:fields => 
+                                                                        {:except => 
+                                                                                   [:step_id, :step]
+                                                                        }
+                                                              })}
+
+      
+      end
   end
 
   # GET /steps/new

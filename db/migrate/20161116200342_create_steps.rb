@@ -8,3 +8,4 @@ class CreateSteps < ActiveRecord::Migration
     end
   end
 end
+
