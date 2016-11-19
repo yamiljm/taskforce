@@ -72,10 +72,23 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @user = User.find(1)
-    @task = @user.build_tasks(task_params)
+    # @user = User.find(1)
+
+    # @task = @user.build_tasks(task_params)
     
     #@task = Task.build(task_params)  
+
+    task_attributes = task_params
+    steps_attributes = task_attributes.delete("steps")
+    fields_attributes = steps_attributes.delete("fields")
+
+    @task = Task.new(task_attributes)
+    @task.steps = steps_attributes.map{ |s| Step.new(s)}
+    @task.steps.fields = fields_attributes.map{ |f| Field.new(f)}
+
+
+
+
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
