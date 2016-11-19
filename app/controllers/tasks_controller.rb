@@ -45,7 +45,7 @@ class TasksController < ApplicationController
 
     @task = Task.new(task_attributes)
 
-    @task.steps = createSteps(steps_attributes)
+    @task.steps = Step.createSteps(steps_attributes)
 
     respond_to do |format|
       if @task.save
@@ -58,21 +58,14 @@ class TasksController < ApplicationController
     end
   end
 
-  def createSteps(steps_attributes) 
-    steps = []
-    steps_attributes.each { |step_attribute| 
-      fields_attributes = step_attribute.delete("fields")
-      step = Step.new(step_attribute)
-      step.fields = fields_attributes.map{ |field_attribute| 
-        Field.new(field_attribute)
-      }
-      steps.push(step)
-    }
-  end
+  
 
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
+
+
+
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
