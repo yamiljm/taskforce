@@ -35,7 +35,12 @@ class StepsController < ApplicationController
   # POST /steps
   # POST /steps.json
   def create
-    @step = Step.new(step_params)
+
+    step_attributes = step_params
+    fields_attributes = step_attributes.delete("fields")
+
+    @step = Step.new(step_attributes)
+    @step.fields = fields_attributes.map{|f| Field.new(f)}
 
     respond_to do |format|
       if @step.save
@@ -80,6 +85,9 @@ class StepsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def step_params
-      params.require(:step).permit(:order, :task_id, :fields)
+      params.permit(:id, :order, :task_id, 
+        fields: [:id, :name, :fieldType, :validationRegex, :required, :errorMessage, :order, :value]
+        )
     end
+
 end
