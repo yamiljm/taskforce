@@ -56,8 +56,17 @@ class StepsController < ApplicationController
   # PATCH/PUT /steps/1
   # PATCH/PUT /steps/1.json
   def update
+
+    step_attributes = step_params
+    fields_attributes = step_attributes.delete("fields")
+
+    fields_attributes.map{|f| 
+      field = Field.find(f[:id])
+      field.update(f)
+    }
+
     respond_to do |format|
-      if @step.update(step_params)
+      if @step.update(step_attributes)
         format.html { redirect_to @step, notice: 'Step was successfully updated.' }
         format.json { render :show, status: :ok, location: @step }
       else
