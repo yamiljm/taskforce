@@ -40,7 +40,7 @@ class StepsController < ApplicationController
     fields_attributes = step_attributes.delete("fields")
 
     @step = Step.new(step_attributes)
-    @step.fields = fields_attributes.map{|f| Field.new(f)}
+    @step.fields = Field.createFields(fields_attributes)
 
     respond_to do |format|
       if @step.save
@@ -60,10 +60,7 @@ class StepsController < ApplicationController
     step_attributes = step_params
     fields_attributes = step_attributes.delete("fields")
 
-    fields_attributes.map{|f| 
-      field = Field.find(f[:id])
-      field.update(f)
-    }
+    Field.updateFields(fields_attributes)
 
     respond_to do |format|
       if @step.update(step_attributes)

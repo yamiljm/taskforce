@@ -14,7 +14,7 @@ class TasksController < ApplicationController
         @tasks = []
       end
     else 
-      @tasks = Task.all #Task.includes([steps: :fields]).all
+      @tasks = Task.all
     end
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Wrong post it"
@@ -24,6 +24,9 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    respond_to do |format|
+        format.json { render :json => @task.to_json(:include => {:steps => {:include => {:fields => {:except => :step}}}})}
+      end
   end
 
   # GET /tasks/new
@@ -64,10 +67,13 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1.json
   def update
 
+    task_attributes = task_params
+    steps_attributes = task_attributes.delete("steps")
 
+    Step.updateSteps(steps_attributes)
 
     respond_to do |format|
-      if @task.update(task_params)
+      if @task.update(task_attributes)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
