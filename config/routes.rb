@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
+
+  resources :tasks
   resources :fields
-
   resources :steps
-
-  resources :task_definitions
 
   resources :users do
     resources :tasks do
@@ -13,13 +12,18 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :task_definitions
   resources :field_definitions
-
   resources :step_definitions
 
-  resources :tasks
+  resources :task_definitions do
+    resources :step_definitions do 
+      resources :field_definitions
+    end
+  end
 
   root 'tasks#index'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

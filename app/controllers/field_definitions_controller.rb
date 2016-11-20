@@ -4,7 +4,16 @@ class FieldDefinitionsController < ApplicationController
   # GET /field_definitions
   # GET /field_definitions.json
   def index
-    @field_definitions = FieldDefinition.all
+    if params[:step_definition_id] 
+      step_definition = StepDefinition.find(params[:step_definition_id])
+      if step_definition != nil
+        @field_definitions = step_definition.fieldDefinitions
+      else
+        @field_definitions = []
+      end
+    else 
+      @field_definitions = FieldDefinition.all
+    end
   end
 
   # GET /field_definitions/1
@@ -69,6 +78,6 @@ class FieldDefinitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def field_definition_params
-      params.require(:field_definition).permit(:name, :field_type, :validationRegex, :required, :step_definition_id, :errorMessage, :order)
+      params.permit(:field_definition,:name, :field_type, :validationRegex, :required, :step_definition_id, :errorMessage, :order)
     end
 end
