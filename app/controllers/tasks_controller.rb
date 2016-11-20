@@ -24,9 +24,9 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-    respond_to do |format|
-        format.json { render :json => @task.to_json(:include => {:steps => {:include => {:fields => {:except => :step}}}})}
-      end
+    # respond_to do |format|
+    #     format.json { render :json => @task.to_json(:include => {:steps => {:include => {:fields => {:except => :step}}}})}
+    #   end
   end
 
   # GET /tasks/new
