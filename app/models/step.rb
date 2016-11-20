@@ -1,8 +1,8 @@
 class Step < ActiveRecord::Base
 
   belongs_to :task
-  has_many :fields#, inverse_of: :step
-  accepts_nested_attributes_for :fields
+  has_many :fields, dependent: :destroy
+  accepts_nested_attributes_for :fields, allow_destroy: true
 
 
   def self.createSteps(steps_attributes) 
