@@ -89,7 +89,7 @@ class StepDefinitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def step_definition_params
-      params.permit(:id, :order, :task_id, 
+      params.permit(:id, :order, :task_definition_id, 
         field_definitions: [:id, :name, :field_type, :validationRegex, :required, :errorMessage, :order]
         )
     end

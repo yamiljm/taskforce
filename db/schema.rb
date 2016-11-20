@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117195725) do
+ActiveRecord::Schema.define(version: 20161120044812) do
 
   create_table "field_definitions", force: true do |t|
     t.string   "name"
@@ -29,11 +29,13 @@ ActiveRecord::Schema.define(version: 20161117195725) do
 #   undefined method `[]' for nil:NilClass
 
   create_table "step_definitions", force: true do |t|
-    t.integer  "task_id"
     t.integer  "order"
+    t.integer  "task_definition_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "step_definitions", ["task_definition_id"], name: "index_step_definitions_on_task_definition_id"
 
   create_table "steps", force: true do |t|
     t.integer  "order"
