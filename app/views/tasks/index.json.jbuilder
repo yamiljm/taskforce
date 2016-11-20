@@ -1,5 +1,5 @@
 json.array!(@tasks) do |task|
-  json.extract! task, :id, :name, :task_type, :description, :status, :currentStep, :user_id
+  json.extract! task, :id, :name, :task_type, :description, :status, :currentStep, :user_id, :created_at, :updated_at
 
   json.steps task.steps do |step|
   	json.extract! step, :id, :order, :task_id
