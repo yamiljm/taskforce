@@ -24,9 +24,6 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-    # respond_to do |format|
-    #     format.json { render :json => @task.to_json(:include => {:steps => {:include => {:fields => {:except => :step}}}})}
-    #   end
   end
 
   # GET /tasks/new
@@ -42,6 +39,9 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
+
+    puts "------------------- CREATE TASK"
+    puts task_params.to_json
 
     task_attributes = task_params
     steps_attributes = task_attributes.delete("steps")
@@ -101,7 +101,7 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.permit(:task,:id, :name, :task_type, :description, :status, :currentStep,
+      params.permit(:task,:id, :name, :task_type, :description, :status, :currentStep, :user_id,
                     steps: [ :id, :order, :task_id, 
                             fields: 
                             [:id, :name, :fieldType, :validationRegex, :required, :errorMessage, :order, :value]

@@ -4,8 +4,18 @@ class FieldsController < ApplicationController
   # GET /fields
   # GET /fields.json
   def index
-    @fields = Field.all
+    if params[:step_id] 
+      step = Step.find(params[:step_id])
+      if step != nil
+        @fields = step.fields
+      else
+        @fields = []
+      end
+    else 
+      @fields = Field.all
+    end
   end
+  
 
   # GET /fields/1
   # GET /fields/1.json

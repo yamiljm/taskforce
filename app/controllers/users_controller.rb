@@ -24,6 +24,10 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+
+    puts "------------- CREATE USER"
+    puts user_params.to_json
+
     @user = User.new(user_params)
 
     respond_to do |format|

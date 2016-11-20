@@ -4,7 +4,17 @@ class StepsController < ApplicationController
   # GET /steps
   # GET /steps.json
   def index
-    @steps = Step.all
+
+    if params[:task_id] 
+      task = Task.find(params[:task_id])
+      if task != nil
+        @steps = task.steps
+      else
+        @steps = []
+      end
+    else 
+      @steps = Step.all
+    end
   end
 
   # GET /steps/1
