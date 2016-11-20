@@ -8,7 +8,7 @@ class StepDefinition < ActiveRecord::Base
 	    step_definitions_attributes.each { |step_definition_attributes| 
 	      fields_definitions_attributes = step_definition_attributes.delete("fieldDefinitions")
 	      stepDefinition = StepDefinition.new(step_definition_attributes)
-	      stepDefinition.fields = Field.createFields(fields_definitions_attributes)
+	      stepDefinition.fieldDefinitions = FieldDefinition.createFields(fields_definitions_attributes)
 	      stepDefinitons.push(stepDefinition)
 	    }
 	    stepDefinitons
@@ -17,8 +17,8 @@ class StepDefinition < ActiveRecord::Base
   def self.updateSteps(step_definitions_attributes)
   	step_definitions_attributes.each { |step_definition_attribute| 
   		field_definitions_attributes = step_attribute.delete("fieldDefinitions")
-  		Field.updateFields(field_definitions_attributes)
-  		stepDefinition = Step.find(step_definition_attribute[:id])
+  		FieldDefinition.updateFields(field_definitions_attributes)
+  		stepDefinition = StepDefinition.find(step_definition_attribute[:id])
   		stepDefinition.update(step_definition_attribute)
   	}
   end

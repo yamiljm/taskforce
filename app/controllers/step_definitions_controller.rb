@@ -4,7 +4,16 @@ class StepDefinitionsController < ApplicationController
   # GET /step_definitions
   # GET /step_definitions.json
   def index
-    @step_definitions = StepDefinition.all
+    if params[:task_definition_id] 
+      task_definition = TaskDefinition.find(params[:task_definition_id])
+      if task_definition != nil
+        @step_definitions = task_definition.step_definitions
+      else
+        @step_definitions = []
+      end
+    else 
+      @step_definitions = StepDefinition.all
+    end
   end
 
   # GET /step_definitions/1
@@ -24,7 +33,12 @@ class StepDefinitionsController < ApplicationController
   # POST /step_definitions
   # POST /step_definitions.json
   def create
-    @step_definition = StepDefinition.new(step_definition_params)
+
+    step_definition_attributes = step_definition_params
+    field_definitions_attributes = step_definition_attributes.delete("field_definitions")
+
+    @step_definition = StepDefinition.new(step_definition_attributes)
+    @step_definition.fieldDefinitions = FieldDefinition.createFieldDefinitions(field_definitions_attributes)
 
     respond_to do |format|
       if @step_definition.save
@@ -40,8 +54,14 @@ class StepDefinitionsController < ApplicationController
   # PATCH/PUT /step_definitions/1
   # PATCH/PUT /step_definitions/1.json
   def update
+
+    step_definition_attributes = step_definition_params
+    field_definitions_attributes = step_definition_attributes.delete("field_definitions")
+
+    FieldDefinition.updateFieldDefinitions(field_definitions_attributes)
+
     respond_to do |format|
-      if @step_definition.update(step_definition_params)
+      if @step_definition.update(step_definition_attributes)
         format.html { redirect_to @step_definition, notice: 'Step definition was successfully updated.' }
         format.json { render :show, status: :ok, location: @step_definition }
       else
@@ -69,6 +89,8 @@ class StepDefinitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def step_definition_params
-      params.require(:step_definition).permit(:task_id, :order)
+      params.permit(:id, :order, :task_id, 
+        field_definitions: [:id, :name, :field_type, :validationRegex, :required, :errorMessage, :order]
+        )
     end
 end
