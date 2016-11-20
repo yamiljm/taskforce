@@ -24,7 +24,13 @@ class TaskDefinitionsController < ApplicationController
   # POST /task_definitions
   # POST /task_definitions.json
   def create
-    @task_definition = TaskDefinition.new(task_definition_params)
+
+    task_definition_attributes = task_definition_params
+    step_definitions_attributes = task_definition_attributes.delete("step_definitions")
+
+    @task_definition = TaskDefinition.new(task_definition_attributes)
+
+    @task_definition.stepDefinitions = StepDefinition.createStepDefinitions(step_definitions_attributes)
 
     respond_to do |format|
       if @task_definition.save
@@ -40,8 +46,14 @@ class TaskDefinitionsController < ApplicationController
   # PATCH/PUT /task_definitions/1
   # PATCH/PUT /task_definitions/1.json
   def update
+
+    task_definition_attributes = task_definition_params
+    step_definitions_attributes = task_definition_attributes.delete("step_definitions")
+
+    StepDefinition.updateStepDefinitions(step_definitions_attributes)
+
     respond_to do |format|
-      if @task_definition.update(task_definition_params)
+      if @task_definition.update(task_definition_attributes)
         format.html { redirect_to @task_definition, notice: 'Task definition was successfully updated.' }
         format.json { render :show, status: :ok, location: @task_definition }
       else
@@ -69,6 +81,10 @@ class TaskDefinitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_definition_params
-      params.require(:task_definition).permit(:name, :type, :description)
+      params.permit(:task,:id, :name, :type, :description, :status,
+                    step_definitions: [ :id, :order, :task_definition_id, 
+                            field_definitions: 
+                            [:id, :name, :fieldType, :validationRegex, :required, :errorMessage, :order]
+                      ])
     end
 end

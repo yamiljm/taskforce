@@ -40,9 +40,6 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
 
-    puts "------------------- CREATE TASK"
-    puts task_params.to_json
-
     task_attributes = task_params
     steps_attributes = task_attributes.delete("steps")
 
