@@ -16,11 +16,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :task_definitions
   resources :field_definitions
   resources :step_definitions
 
-  resources :task_definitions do
+  resources :workflows do
     resources :step_definitions do 
       resources :field_definitions
     end
