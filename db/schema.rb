@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120044812) do
+ActiveRecord::Schema.define(version: 20161121022750) do
 
   create_table "field_definitions", force: true do |t|
     t.string   "name"
@@ -28,14 +28,8 @@ ActiveRecord::Schema.define(version: 20161120044812) do
 # Could not dump table "fields" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
 
-  create_table "step_definitions", force: true do |t|
-    t.integer  "order"
-    t.integer  "task_definition_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "step_definitions", ["task_definition_id"], name: "index_step_definitions_on_task_definition_id"
+# Could not dump table "step_definitions" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "steps", force: true do |t|
     t.integer  "order"
@@ -52,6 +46,8 @@ ActiveRecord::Schema.define(version: 20161120044812) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "step_definitions"
+    t.string   "reference"
   end
 
   create_table "tasks", force: true do |t|
@@ -71,6 +67,14 @@ ActiveRecord::Schema.define(version: 20161120044812) do
     t.string   "name"
     t.string   "password"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "workflows", force: true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
