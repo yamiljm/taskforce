@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :workflows
+
   get 'sessions/new'
 
   resources :tasks
