@@ -30,6 +30,10 @@ class WorkflowsController < ApplicationController
 
     @workflow = Workflow.new(workflow_attributes)
 
+    puts "--------------"
+    puts step_definitions_attributes.to_json
+
+
     @workflow.stepDefinitions = StepDefinition.createStepDefinitions(step_definitions_attributes)
 
     respond_to do |format|
@@ -81,9 +85,9 @@ class WorkflowsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def workflow_params
-      params.permit(:workflow, :id, :name, :type, :description, :status,
-                    step_definitions: [ :id, :order, :task_definition_id, 
-                            field_definitions: 
+      params.permit(:workflow, :id, :name, :type, :description,
+                    step_definitions: [ :id, :order, :workflow_id, 
+                            fieldDefinitions: 
                             [:id, :name, :fieldType, :validationRegex, :required, :errorMessage, :order]
                       ])
     end

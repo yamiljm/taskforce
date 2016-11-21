@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121020817) do
+ActiveRecord::Schema.define(version: 20161121022750) do
 
   create_table "field_definitions", force: true do |t|
     t.string   "name"
