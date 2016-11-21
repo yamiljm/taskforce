@@ -1,5 +1,5 @@
 class AddTaskToStep < ActiveRecord::Migration
   def change
-    add_column :steps, :task, :reference
+    add_column :steps, :task, :references
   end
 end
