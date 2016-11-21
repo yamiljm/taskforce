@@ -23,6 +23,17 @@
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </div>
+
+  <h3>Steps</h3>
+  <div id='step_definition'>
+    <%= f.fields_for :step_definitions do |step_definition| %>
+      <%= render 'step_definitions_fields', :f => step_definition%>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'add step_definition', f, :step_definitions %>
+    </div>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

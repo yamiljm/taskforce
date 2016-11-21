@@ -1,0 +1,12 @@
+ <div class='nested-fields'>
+
+    <div class="field">
+      <%= f.label :workflow_id %><br>
+      <%= f.number_field :workflow_id %>
+    </div>
+    <div class="field">
+      <%= f.label :order %><br>
+      <%= f.number_field :order %>
+    </div>
+    <%= link_to_remove_association "remove step", f %>
+</div>

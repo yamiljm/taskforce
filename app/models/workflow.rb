@@ -1,5 +1,6 @@
 class Workflow < ActiveRecord::Base
-	has_many :stepDefinitions, dependent: :destroy
-	accepts_nested_attributes_for :stepDefinitions, allow_destroy: true
+	# attr_accessible :step_definitions
+	has_many :step_definitions, dependent: :destroy
+	accepts_nested_attributes_for :step_definitions, allow_destroy: true
 	self.inheritance_column = nil
 end
