@@ -25,17 +25,17 @@ class WorkflowsController < ApplicationController
   # POST /workflows.json
   def create
 
-    workflow_attributes = workflow_params
-    step_definitions_attributes = workflow_attributes.delete("step_definitions")
+    # puts "---------------------"
+    # puts workflow_params.to_json
 
-    @workflow = Workflow.new(workflow_attributes)
+    # workflow_attributes = workflow_params
+    # step_definitions_attributes = workflow_attributes.delete("step_definitions")
 
-    puts "--------------"
-    puts step_definitions_attributes.to_json
+    # @workflow = Workflow.new(workflow_attributes)
 
+    # @workflow.step_definitions = StepDefinition.createStepDefinitions(step_definitions_attributes)
 
-    @workflow.stepDefinitions = StepDefinition.createStepDefinitions(step_definitions_attributes)
-
+    @workflow = Workflow.new(workflow_params)
     respond_to do |format|
       if @workflow.save
         format.html { redirect_to @workflow, notice: 'Workflow was successfully created.' }
@@ -51,13 +51,13 @@ class WorkflowsController < ApplicationController
   # PATCH/PUT /workflows/1.json
   def update
 
-    workflow_attributes = workflow_params
-    step_definitions_attributes = workflow_attributes.delete("step_definitions")
+    # workflow_attributes = workflow_params
+    # step_definitions_attributes = workflow_attributes.delete("step_definitions")
 
-    StepDefinition.updateStepDefinitions(step_definitions_attributes)
+    # StepDefinition.updateStepDefinitions(step_definitions_attributes)
 
     respond_to do |format|
-      if @workflow.update(workflow_attributes)
+      if @workflow.update(workflow_params)
         format.html { redirect_to @workflow, notice: 'Workflow was successfully updated.' }
         format.json { render :show, status: :ok, location: @workflow }
       else
@@ -85,10 +85,14 @@ class WorkflowsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def workflow_params
-      params.permit(:workflow, :id, :name, :type, :description,
+      params[:workflow].permit(:workflow, :id, :name, :type, :description, :_destroy,
                     step_definitions: [ :id, :order, :workflow_id, 
-                            fieldDefinitions: 
-                            [:id, :name, :fieldType, :validationRegex, :required, :errorMessage, :order]
+                            field_definitions: 
+                            [:id, :name, :field_type, :validationRegex, :required, :errorMessage, :order]
+                      ],
+                      step_definitions_attributes: [ :id, :order, :workflow_id, :_destroy, 
+                            field_definitions_attributes: 
+                            [:id, :name, :field_type, :validationRegex, :required, :errorMessage, :order, :_destroy, :step_definition_id]
                       ])
     end
 end
