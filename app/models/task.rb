@@ -14,9 +14,9 @@ class Task < ActiveRecord::Base
     	task.status = Status::PENDING
     	task.currentStep = 0
 
-    	if workflow.stepDefinitions
+    	if workflow.step_definitions
     		task.steps = []
-    		workflow.stepDefinitions.each do |stepDefinition|
+    		workflow.step_definitions.each do |stepDefinition|
     			step = stepDefinition.transformToStep
     			task.steps.push(step)
     		end
