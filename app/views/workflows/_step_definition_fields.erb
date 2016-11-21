@@ -8,5 +8,16 @@
       <%= f.label :order %><br>
       <%= f.number_field :order %>
     </div>
-    <%= link_to_remove_association "remove step", f %>
+
+    <h3>Fields</h3>
+    <div id='field_definition'>
+      <%= f.fields_for :field_definitions do |field_definition| %>
+        <%= render 'field_definitions_fields', :f => field_definition%>
+      <% end %>
+      <div class='links'>
+        <%= link_to_add_association 'add field_definition', f, :field_definitions %>
+      </div>
+    </div>
+
+    <%= link_to_remove_association "remove field", f %>
 </div>
