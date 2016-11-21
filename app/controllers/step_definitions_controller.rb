@@ -4,10 +4,10 @@ class StepDefinitionsController < ApplicationController
   # GET /step_definitions
   # GET /step_definitions.json
   def index
-    if params[:task_definition_id] 
-      task_definition = TaskDefinition.find(params[:task_definition_id])
-      if task_definition != nil
-        @step_definitions = task_definition.step_definitions
+    if params[:workflow_id] 
+      workflow = Workflow.find(params[:workflow_id])
+      if workflow != nil
+        @step_definitions = workflow.step_definitions
       else
         @step_definitions = []
       end
@@ -38,7 +38,7 @@ class StepDefinitionsController < ApplicationController
     field_definitions_attributes = step_definition_attributes.delete("field_definitions")
 
     @step_definition = StepDefinition.new(step_definition_attributes)
-    @step_definition.fieldDefinitions = FieldDefinition.createFieldDefinitions(field_definitions_attributes)
+    @step_definition.field_definitions = FieldDefinition.createFieldDefinitions(field_definitions_attributes)
 
     respond_to do |format|
       if @step_definition.save
@@ -89,7 +89,7 @@ class StepDefinitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def step_definition_params
-      params.permit(:id, :order, :task_definition_id, 
+      params.permit(:id, :order, :workflow_id, 
         field_definitions: [:id, :name, :field_type, :validationRegex, :required, :errorMessage, :order]
         )
     end

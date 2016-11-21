@@ -7,7 +7,7 @@ class FieldDefinitionsController < ApplicationController
     if params[:step_definition_id] 
       step_definition = StepDefinition.find(params[:step_definition_id])
       if step_definition != nil
-        @field_definitions = step_definition.fieldDefinitions
+        @field_definitions = step_definition.field_definitions
       else
         @field_definitions = []
       end
