@@ -1,5 +1,6 @@
 class FieldDefinition < ActiveRecord::Base
 	belongs_to :stepDefinitions
+	self.inheritance_column = nil
 
 	def self.createFieldDefinitions(field_definitions_attributes) 
 		if (field_definitions_attributes)
@@ -14,6 +15,19 @@ class FieldDefinition < ActiveRecord::Base
 		      fieldDefinition.update(f)
 		    }
 		end
+	end
+
+	def transformToField
+
+		field = Field.new
+		field.name = self.name
+		field.fieldType = self.field_type
+		field.validationRegex = self.validationRegex
+		field.required = self.required
+		field.errorMessage = self.errorMessage
+		field.order = self.order
+
+		return field
 	end
 
 end

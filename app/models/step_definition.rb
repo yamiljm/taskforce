@@ -2,6 +2,7 @@ class StepDefinition < ActiveRecord::Base
     belongs_to :taskDefinitions
     has_many :fieldDefinitions, dependent: :destroy
     accepts_nested_attributes_for :fieldDefinitions, allow_destroy: true
+    self.inheritance_column = nil
 
     def self.createStepDefinitions(step_definitions_attributes) 
 	    stepDefinitons = []
@@ -25,6 +26,20 @@ class StepDefinition < ActiveRecord::Base
     		stepDefinition.update(step_definition_attribute)
     	}
     end
+  end
+
+  def transformToStep
+    step = Step.new
+    step.order = self.order
+
+    if self.fieldDefinitions
+      step.fields = []
+      self.fieldDefinitions.each do |fieldDefinition|
+        step.fields.push(fieldDefinition.transformToField)
+      end
+    end
+
+    return step
   end
 
 end

@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
+  get 'users/:user_id/task_from_workflow/:workflow_id', to: 'tasks#create_from_workflow'
+  get 'task_from_workflow/:workflow_id', to: 'tasks#create_from_workflow'
+
   root 'task_definitions#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
