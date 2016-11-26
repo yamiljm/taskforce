@@ -23,5 +23,6 @@ module Workspace
     # config.i18n.default_locale = :de
 
     config.autoload_paths << Rails.root.join('lib')
+    config.app_generators.stylesheet_engine :less
   end
 end

@@ -45,7 +45,7 @@ gem 'rails_12factor', group: :production
 gem "cocoon"
 
 # group :assets do
-  gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails'
 # end
 
 gem "less-rails"

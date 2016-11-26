@@ -15,3 +15,5 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require cocoon
+//= require [flatly]/loader
+//= require [flatly]/bootswatch

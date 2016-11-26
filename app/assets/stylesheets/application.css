@@ -11,6 +11,8 @@
  * file per style scope.
  *
  *= require bootstrap.css
- *
+ *= require bootstrap_and_overrides
+ *= require [flatly]/loader
+ *= require [flatly]/bootswatch
  *= require_self
  */
