@@ -1,6 +1,7 @@
 class TaskDefinitionsController < ApplicationController
   before_action :set_task_definition, only: [:show, :edit, :update, :destroy]
 
+  
   # GET /task_definitions
   # GET /task_definitions.json
   def index

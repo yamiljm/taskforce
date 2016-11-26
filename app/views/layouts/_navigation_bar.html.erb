@@ -1,20 +1,33 @@
-	<div class="navbar navbar-default " >
-		  <div class="container">
-		    <div class="navbar-header">
-		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		        <span class="sr-only">Toggle Navigation</span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		      </button>
-		      <a class="navbar-brand" href="#">Task4s</a>
-		    </div> <!-- end div class="navbar-header" -->
-		    <div class="collapse navbar-collapse">
-		      <ul class="nav navbar-nav">
-		        <li class="active"><%= link_to "Workflows", workflows_path %></li>
-		        <li><%= link_to "Tasks", tasks_path %></li>
-		        <li><%= link_to "Users", users_path %></li>
-		      </ul>
-		    </div> <!-- end div class="collapse navbar-collapse" -->
-		  </div> <!-- end div class="container" -->
-		</div> 
+<div class="navbar navbar-default ">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Task4s</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to "Workflows", workflows_path %></li>
+            <li><%= link_to "Tasks", tasks_path %></li>
+            <li><%= link_to "Users", users_path %></li>
+            <li><%= link_to "Tests", task_definitions_path %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+

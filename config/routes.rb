@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :field_definitions
   resources :step_definitions
+  resources :task_definitions
 
   resources :workflows do
     resources :step_definitions do 
