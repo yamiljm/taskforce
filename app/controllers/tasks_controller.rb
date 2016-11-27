@@ -90,45 +90,7 @@ class TasksController < ApplicationController
     end
   end
 
-  def create_from_workflow
-
-    if (params[:workflow_id])
-      workflow = Workflow.find(params[:workflow_id])
-      @task = Task.createFromWorkflow(workflow)
-
-      if params[:user_id]
-        user = User.find(params[:user_id])
-        @task.user = user
-      end
-      
-    puts "----- LA CREO"
-
-    puts "------Va a responder"  
-      respond_to do |format|
-      puts "---Entro a responder"
-      if @task.save
-        puts "--------------------PASOooooo por save"
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :action => :show, status: :created, location: @task }
-      else
-        puts "-----------------NOOO SALVO"
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
-    end
-      
-    else
-      flash[:notice] = "Empty workflow_id"
-      redirect_to workflows_url
-    end
-    rescue ActiveRecord::RecordNotFound
-      flash[:notice] = "Wrong workflow_id"
-      redirect_to workflows_url
-
-
-
-  end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task

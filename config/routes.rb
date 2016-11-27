@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
 
-  resources :tasks
+  resources :tasks 
   resources :fields
   resources :steps
 
@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     resources :step_definitions do 
       resources :field_definitions
     end
+    member do
+      get 'create_task'
+    end
   end
 
   get    '/login',   to: 'sessions#new'
@@ -31,7 +34,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   get 'users/:user_id/task_from_workflow/:workflow_id', to: 'tasks#create_from_workflow'
-  get 'task_from_workflow/:workflow_id', to: 'tasks#create_from_workflow'
+  # get 'task_from_workflow/:workflow_id', to: 'tasks#create_from_workflow'
 
   root 'workflows#index'
   
