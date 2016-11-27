@@ -1,23 +1,31 @@
- <div class='nested-fields'>
-
-    <div class="field">
-      <%= f.label :workflow_id %><br>
-      <%= f.number_field :workflow_id %>
-    </div>
-    <div class="field">
-      <%= f.label :order %><br>
-      <%= f.number_field :order %>
-    </div>
-
-    <h3>Fields</h3>
-    <div id='field_definition'>
-      <%= f.fields_for :field_definitions do |field_definition| %>
-        <%= render 'field_definitions_fields', :f => field_definition%>
-      <% end %>
-      <div class='links'>
-        <%= link_to_add_association 'add field_definition', f, :field_definitions %>
+ <div class='nested-fields panel panel-default'>
+  <div class="panel-heading">
+    <h3 class="panel-title">Step</h3>
+    
+  </div>
+  <div class="panel-body">
+    <div class="field row">
+      <div class="col-sm-2"
+        <%= f.label :order %><br> 
+      </div>
+      <div class="col-sm-2">
+        <%= f.number_field :order %>
       </div>
     </div>
 
-    <%= link_to_remove_association "remove field", f %>
+    <div class='links'>
+        <%= link_to_add_association 'Add field definition', f, :field_definitions %>
+    </div>
+
+    <div class="row">
+      <div id='field_definition'>
+        <div class="col-sm-4">
+          <%= f.fields_for :field_definitions do |field_definition| %>
+            <%= render 'field_definitions_fields', :f => field_definition%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= link_to_remove_association "Remove step definition", f %>
+  </div>
 </div>
