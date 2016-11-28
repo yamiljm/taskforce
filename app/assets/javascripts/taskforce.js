@@ -1,10 +1,11 @@
 
 document.addEventListener("DOMContentLoaded", function(event) { 
   
-    $(document).on('click', '.panel-heading i.clickable', collapsePanel)
+    $(document).on('click', '.step_panel .panel-heading i.clickable', collapseStepPanel)
+    $(document).on('click', '.field_panel .panel-heading i.clickable', collapseFieldPanel)
   
     console.log("Se cargó contenido")
-    $('#step_definition_container')
+    $('.fields_container')
       .on('cocoon:before-insert', function(e,step_to_be_added) {
         
       })
@@ -21,14 +22,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 
-function collapsePanel(event){
+function collapseStepPanel(event){
+  console.log("Collapse step panel")
   var element = $('#'+event.target.id);
   if(!element.hasClass('panel-collapsed')) {
-    element.parents('.panel').find('.panel-body').slideUp();
+    element.parents('.step_panel').find('.panel-body').slideUp();
     element.addClass('panel-collapsed');
     element.removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
   } else {
-    element.parents('.panel').find('.panel-body').slideDown();
+    element.parents('.step_panel').find('.panel-body').slideDown();
+    element.removeClass('panel-collapsed');
+    element.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+  }
+}
+
+function collapseFieldPanel(event){
+  console.log("Collapse field panel")
+  var element = $('#'+event.target.id);
+  if(!element.hasClass('panel-collapsed')) {
+    element.parents('.field_panel').find('.panel-body').slideUp();
+    element.addClass('panel-collapsed');
+    element.removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+  } else {
+    element.parents('.field_panel').find('.panel-body').slideDown();
     element.removeClass('panel-collapsed');
     element.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
   }
