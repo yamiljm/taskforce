@@ -1,17 +1,19 @@
- <div class='nested-fields panel panel-default'>
+ <div id="step_panel" class='nested-fields panel panel-default'>
   <div class="panel-heading">
-    <h3 class="panel-title">Step</h3>
-    
+    <h4 class="panel-title">Step
+      <span class="pull-right "><i class="glyphicon glyphicon-chevron-up unique clickable"></i></span>
+    </h4>
   </div>
   <div class="panel-body">
     <div class="field row">
-      <div class="col-sm-2"
+      <div class="col-sm-2">
         <%= f.label :order %><br> 
       </div>
       <div class="col-sm-2">
         <%= f.number_field :order %>
       </div>
-    </div>
+      </div>
+  
 
     <div class='links'>
         <%= link_to_add_association 'Add field definition', f, :field_definitions %>
@@ -26,6 +28,11 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="panel-footer">
     <%= link_to_remove_association "Remove step definition", f %>
   </div>
+  </div>
 </div>
+
+

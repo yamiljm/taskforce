@@ -32,7 +32,7 @@
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "flatly" %>
+    <%= javascript_include_tag "flatly", "jquery_ujs", "jquery" %>
     <%= yield(:page_javascript) if content_for?(:page_javascript) %>
   </body>
 </html>

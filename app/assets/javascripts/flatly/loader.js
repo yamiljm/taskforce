@@ -1,7 +1,8 @@
 // Flatly
 // Bootswatch
 // loader.js
-
+//= require jquery_ujs
+//= require jquery
 //= require twitter/bootstrap/transition
 //= require twitter/bootstrap/alert
 //= require twitter/bootstrap/button
@@ -14,4 +15,3 @@
 //= require twitter/bootstrap/scrollspy
 //= require twitter/bootstrap/tab
 //= require twitter/bootstrap/affix
-//= require cocoon

@@ -1,3 +1,5 @@
+
+
 <%= form_for @workflow, :html => { :class => "form-horizontal workflow" } do |f| %>
 
   <% if @workflow.errors.any? %>
@@ -37,7 +39,7 @@
     <%=f.error_span(:description) %>
   </div>
 
-  <div class="page-header">
+  <div id='step_definition_container' class="page-header container">
     <h2>Steps</h2>
     <div class='links'>
       <%= link_to_add_association 'Add step definition', f, :step_definitions,
@@ -46,7 +48,7 @@
   </div>
 
   <div class="row">
-    <div id='step_definition'>
+    
       <div class="col-sm-4">
         <%= f.fields_for :step_definitions do |step_definition| %>
           <%= index = index + 1 %>
@@ -54,7 +56,7 @@
         <% end %>
       </div>
       
-    </div>
+    
   </div>
 
   <div class="form-group">
@@ -66,3 +68,4 @@
   </div>
 
 <% end %>
+
