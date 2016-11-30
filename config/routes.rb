@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
 
-  resources :tasks 
+  resources :tasks do
+    member do
+      get 'select_user'
+    end
+  end
   resources :fields
   resources :steps
 

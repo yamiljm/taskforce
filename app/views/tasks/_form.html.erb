@@ -66,4 +66,12 @@
     </div>
   </div>
 
+  <% if @task.steps.empty? %>
+    <h5>This task has no steps defined</h5>
+  <% else %>
+    <div class="container">
+      <%= render partial: 'task_step', collection: @task.steps, as: :step%>
+    </div>
+  <% end %>s
+
 <% end %>

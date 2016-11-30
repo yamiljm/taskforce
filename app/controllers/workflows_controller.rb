@@ -94,7 +94,7 @@ class WorkflowsController < ApplicationController
       puts "---Entro a responder"
       if @task.save
         puts "--------------------PASOooooo por save"
-        format.html { redirect_to proc { edit_task_url(@task) }, notice: 'Task was successfully created.' }
+        format.html { redirect_to proc { select_user_task_url(@task) }, notice: 'Task was successfully created.' }
         format.json { render :action => :show, status: :created, location: @task }
       else
         puts "-----------------NOOO SALVO"

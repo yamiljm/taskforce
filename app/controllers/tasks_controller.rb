@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :select_user]
 
 
   # GET /tasks
@@ -29,11 +29,14 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
-    @buton_tag = "FOFOFO"
   end
 
   # GET /tasks/1/edit
   def edit
+  end
+
+  def select_user
+
   end
 
   # POST /tasks
