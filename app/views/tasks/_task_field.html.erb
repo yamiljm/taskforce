@@ -1,0 +1,29 @@
+ <div class='nested-fields panel panel-info field_panel'>
+   <div class="panel-heading">
+    <h3 class="panel-title">Field <%= field.order %></h3>
+  </div>
+  	<div class="panel-body">
+  		<div class="row" >	
+  			
+	  		  <dl class="dl-horizontal field col-sm-6">
+	  		  	<dt><strong><%= "Name" %>:</strong></dt>
+	  		  	<dd><%= field.name %></dd>
+	  		  	<dt><strong><%= "Value" %>:</strong></dt>
+	  		  	<dd><%= field.value %></dd>
+	  		  	<dt><strong><%= "Type" %>:</strong></dt>
+	  		  	<dd><%= field.fieldType %></dd>
+	  		  	</dl>
+	  		  	<!-- <span class="pull-right"> -->
+		  		  	<dl class="dl-horizontal field col-sm-6">
+		  		  	<dt><strong><%= "Required" %>:</strong></dt>
+		  		  	<dd><%= field.required %></dd>
+		  		  	<dt><strong><%= "Validation regex" %>:</strong></dt>
+		  		  	<dd><%= field.validationRegex %></dd>
+		  		  	<dt><strong><%= "Error message" %>:</strong></dt>
+		  		  	<dd><%= field.errorMessage %></dd>
+		  		  	</dl>
+	  		  	<!-- </span> -->
+  		  
+	  	</div>  
+	</div>
+</div>

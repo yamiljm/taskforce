@@ -18,6 +18,14 @@
   <dd><%= @task.user_id %></dd>
 </dl>
 
+<% if @task.steps.empty? %>
+  <h5>This task has no steps defined</h5>
+<% else %>
+  <div class="container">
+    <%= render partial: 'task_step', collection: @task.steps, as: :step%>
+  </div>
+<% end %>
+
 <%= link_to t('.back', :default => t("helpers.links.back")),
               tasks_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),

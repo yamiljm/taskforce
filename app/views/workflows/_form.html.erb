@@ -52,15 +52,12 @@
   </div>
 
   <div class="row">
-    
       <div class="col-sm-4">
         <%= f.fields_for :step_definitions do |step_definition| %>
           <%= index = index + 1 %>
           <%= render 'step_definitions_fields', :f => step_definition%>
         <% end %>
       </div>
-      
-    
   </div>
 
   <div class="form-group">
