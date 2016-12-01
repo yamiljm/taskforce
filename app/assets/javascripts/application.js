@@ -12,6 +12,7 @@
 //
 //= require jquery_ujs
 //= require jquery
+//= require jquery-ui/autocomplete
 //= require twitter/bootstrap
 //= require turbolinks
 //= require cocoon

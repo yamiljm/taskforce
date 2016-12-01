@@ -14,5 +14,6 @@
  *= require bootstrap_and_overrides
  *= require [flatly]/loader
  *= require [flatly]/bootswatch
+ *= require jquery-ui.autocomplete
  *= require_self
  */

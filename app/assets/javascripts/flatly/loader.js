@@ -3,6 +3,7 @@
 // loader.js
 //= require jquery_ujs
 //= require jquery
+//= require jquery-ui
 //= require twitter/bootstrap/transition
 //= require twitter/bootstrap/alert
 //= require twitter/bootstrap/button

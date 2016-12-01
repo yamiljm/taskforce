@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get 'select_user'
     end
   end
+
   resources :fields
   resources :steps
 
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
         resources :fields
       end
     end
+    get :autocomplete_user_name, :on => :collection
   end
 
   resources :field_definitions
