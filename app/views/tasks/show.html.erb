@@ -15,7 +15,7 @@
   <dt><strong><%= model_class.human_attribute_name(:currentStep) %>:</strong></dt>
   <dd><%= @task.currentStep %></dd>
   <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @task.user_id %></dd>
+  <dd><%= @task.user.name %></dd>
 </dl>
 
 <% if @task.steps.empty? %>
