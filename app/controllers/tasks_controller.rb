@@ -67,12 +67,14 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1.json
   def update
     #Diferencia si viene de un json o de un form
-    if (task_params[:task]) 
-      task_attributes = task_params[:task]
-    else
-      task_attributes = task_params
-    end
 
+    puts "TASK PARAMS"
+    puts task_params.to_json
+
+    puts "----------------------"
+
+    task_attributes = task_params
+    
     previus_user_id = task_attributes.delete("previus_user_id")
 
     steps_attributes = task_attributes.delete("steps")
@@ -80,6 +82,8 @@ class TasksController < ApplicationController
     Step.updateSteps(steps_attributes)
 
     respond_to do |format|
+      puts "TASK ATTRIBUTES "
+      puts task_attributes.to_json
       if @task.update(task_attributes)
 
         if PushNotificationHelper.shouldSendNotification(@task, previus_user_id)
@@ -115,10 +119,9 @@ class TasksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.permit(:id, :name, :task_type, :description, :status, :currentStep, :user_id, :previus_user_id, 
-                    task: [:id, :name, :task_type, :description, :status, :currentStep, :user_id, :previus_user_id],
                     steps: [ :id, :order, :task_id, 
                             fields: 
-                            [:id, :name, :fieldType, :validationRegex, :required, :errorMessage, :order, :value]
+                            [:id, :name, :fieldType, :validationRegex, :required, :errorMessage, :order, :value, :step_id]
                       ])
     end
 end

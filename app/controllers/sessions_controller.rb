@@ -3,12 +3,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: params[:session][:email].downcase)
+    @user = User.find_by(email: params[:session][:username].downcase)
 
     respond_to do |format|
 	    if @user && @user.authenticate(params[:session][:password])
 	      # Log the user in and redirect to the user's show page.
-        @user.registration_id = params[:session][:registration_id]
+        @user.registration_id = params[:session][:registrationId]
 	      log_in @user
 	      format.html { redirect_to @user }
         format.json {render :json => @user, :except=>  [:password]  }

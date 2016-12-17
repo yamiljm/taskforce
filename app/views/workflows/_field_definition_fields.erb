@@ -10,7 +10,8 @@
 		  </div>
 		  <div class="field col-sm-6">
 		    <%= f.label :type %><br>
-		    <%= f.text_field :field_type %>
+
+		    <%= f.select :field_type, options_for_select([["TEXT", "TEXT"], ["OPTIONS", "OPTIONS"], ["NUMBER", "NUMBER"], ["BOOLEAN", "BOOLEAN"]]) %>
 		  </div>
 		  <div class="field col-sm-6"><br>
 		    <%= f.label :required %>
