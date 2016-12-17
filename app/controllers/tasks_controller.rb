@@ -73,12 +73,19 @@ class TasksController < ApplicationController
       task_attributes = task_params
     end
 
+    previus_user_id = task_attributes.delete("previus_user_id")
+
     steps_attributes = task_attributes.delete("steps")
 
     Step.updateSteps(steps_attributes)
 
     respond_to do |format|
       if @task.update(task_attributes)
+
+        if PushNotificationHelper.shouldSendNotification(@task, previus_user_id)
+          PushNotificationHelper.sendNotification(@task)
+        end
+
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
@@ -107,8 +114,8 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.permit(:id, :name, :task_type, :description, :status, :currentStep, :user_id, 
-                    task: [:id, :name, :task_type, :description, :status, :currentStep, :user_id],
+      params.permit(:id, :name, :task_type, :description, :status, :currentStep, :user_id, :previus_user_id, 
+                    task: [:id, :name, :task_type, :description, :status, :currentStep, :user_id, :previus_user_id],
                     steps: [ :id, :order, :task_id, 
                             fields: 
                             [:id, :name, :fieldType, :validationRegex, :required, :errorMessage, :order, :value]

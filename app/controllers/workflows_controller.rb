@@ -87,21 +87,17 @@ class WorkflowsController < ApplicationController
         @task.user = user
       end
       
-    puts "----- LA CREO"
-
-    puts "------Va a responder"  
       respond_to do |format|
-      puts "---Entro a responder"
-      if @task.save
-        puts "--------------------PASOooooo por save"
-        format.html { redirect_to proc { select_user_task_url(@task) }, notice: 'Task was successfully created.' }
-        format.json { render :action => :show, status: :created, location: @task }
-      else
-        puts "-----------------NOOO SALVO"
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+
+        if @task.save
+          format.html { redirect_to proc { select_user_task_url(@task) }, notice: 'Task was successfully created.' }
+          format.json { render :action => :show, status: :created, location: @task }
+        else
+
+          format.html { render :new }
+          format.json { render json: @task.errors, status: :unprocessable_entity }
+        end
       end
-    end
       
     else
       flash[:notice] = "Empty workflow_id"
@@ -110,9 +106,6 @@ class WorkflowsController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "Wrong workflow_id"
       redirect_to workflows_url
-
-
-
   end
 
 
