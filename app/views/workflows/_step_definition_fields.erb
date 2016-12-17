@@ -1,7 +1,7 @@
  <div class='nested-fields panel panel-default step_panel'>
   <div class="panel-heading">
     <h4 class="panel-title">Step
-      <span class="pull-right "><i class="glyphicon glyphicon-chevron-up unique clickable"></i></span>
+      <span class="pull-right "><i id=<%= "step" + f.options[:child_index].to_s %> class="glyphicon glyphicon-chevron-up unique clickable"></i></span>
     </h4>
   </div>
   <div class="panel-body">
@@ -21,9 +21,9 @@
 
     <div class="row">
       <div id='field_definition'>
-        <div class="col-sm-4">
+        <div class="col-sm-12">
           <%= f.fields_for :field_definitions do |field_definition| %>
-            <%= render 'field_definitions_fields', :f => field_definition%>
+            <%= render 'field_definition_fields', :f => field_definition%>
           <% end %>
         </div>
       </div>
