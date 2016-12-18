@@ -26,6 +26,7 @@ class FieldDefinition < ActiveRecord::Base
 		field.required = self.required
 		field.errorMessage = self.errorMessage
 		field.order = self.order
+		field.options = self.options
 
 		return field
 	end

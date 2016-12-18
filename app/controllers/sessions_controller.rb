@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
 	    if @user && @user.authenticate(params[:session][:password])
 	      # Log the user in and redirect to the user's show page.
         @user.registration_id = params[:session][:registrationId]
+        @user.save
 	      log_in @user
 	      format.html { redirect_to @user }
         format.json {render :json => @user, :except=>  [:password]  }

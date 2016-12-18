@@ -19,6 +19,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
         $(this).data('remove-timeout', 1000);
         // step.fadeOut('slow');
       });
+
+
+    $(function(){
+      $('.type-container select').change(function() {
+
+        if ($(this).val()=="OPTIONS") {
+          console.log("SOY OPTIONS")
+          var parent = $(this).parent().parent();
+          var children = parent.children('.option-values');
+          children.show()
+        } else {
+          console.log("SOY OTRA COSA")
+          var parent = $(this).parent().parent();
+          var children = parent.children('.option-values');
+          children.hide()
+        }
+    });
+});
 });
 
 

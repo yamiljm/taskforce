@@ -11,29 +11,21 @@ module PushNotificationHelper
 	end
 
 	def self.sendNotification(task)
-		# Thread.new do
-	 #  		puts "I'm in a thread!"
-		# 	url = URI.parse('http://localhost:3000/api/plans')
-		# 	http = Net::HTTP.new(url.host, url.port)
-		# 	# http.use_ssl = true
-		# 	request = Net::HTTP::Post.new(url.path, {'Content-Type' => 'application/json'})
-		# 	request.body = self.dataFromTask(task)
-		# 	response = http.request(request)
-		# 	puts "RESPUESTAAAA"
 
-		# 	case response
-		# 		when Net::HTTPSuccess, Net::HTTPRedirection
-	 #  				puts "EXITO"
-		# 		else
-	 #  				puts "FALLO"
-		# 	end
-		
-		# end
-	end
+		host = "http://10.0.0.5:8080"
+		path = "/v1/api/devices/send/" + task.user.registration_id
+		url = URI.parse(host + path)
+		http = Net::HTTP.new(url.host, url.port)
+		request = Net::HTTP::Put.new(url.path, {'Content-Type' => 'application/json'})
+		request.add_field("x-apikey", "6a474b1c-fb09-4b5f-891f-dbf4e5135e91")
+		request.body = '{"message" : "'+ task.name + '", "title" : "Nueva tarea asignada" }'
+		response = http.request(request)
 
-	private 
-
-	def self.dataFromTask(task) 
-		return task.to_json
+		case response
+			when Net::HTTPSuccess, Net::HTTPRedirection
+  				puts "EXITO"
+			else
+  				puts "FALLO"
+		end
 	end
 end

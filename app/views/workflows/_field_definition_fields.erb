@@ -8,10 +8,15 @@
 		    <%= f.label :name %><br>
 		    <%= f.text_field :name %>
 		  </div>
-		  <div class="field col-sm-6">
-		    <%= f.label :type %><br>
-
-		    <%= f.select :field_type, options_for_select([["TEXT", "TEXT"], ["OPTIONS", "OPTIONS"], ["NUMBER", "NUMBER"], ["BOOLEAN", "BOOLEAN"]]) %>
+		  <div class="type-container">
+			  <div class="field col-sm-6">
+			    <%= f.label :type %><br>
+			    <%= f.select :field_type, ["TEXT", "OPTIONS", "NUMBER", "BOOLEAN"], selected: f.object.field_type %>
+			  </div>
+			  <div class="field col-sm-6 option-values" style="display:<%=FieldDefinitionsHelper.optionsStyle(f.object.field_type)%>;">
+			    <%= f.label :options %><br>
+			    <%= f.text_field :options %>
+			  </div>
 		  </div>
 		  <div class="field col-sm-6"><br>
 		    <%= f.label :required %>
@@ -39,3 +44,23 @@
 		<%= link_to_remove_association "Remove field definition", f %>
 	</div>
 </div>
+
+
+<script>
+	$(function(){
+		console.log("Alo alo");
+      $('.type-container select').change(function() {
+
+        if ($(this).val()=="OPTIONS") {
+          console.log("SOY OPTIONS");
+          var parent = $(this).parent().parent();
+          var children = parent.children('.option-values');
+          children.show()
+        } else {
+          console.log("SOY OTRA COSA");
+          var parent = $(this).parent().parent();
+          var children = parent.children('.option-values');
+          children.hide()
+        }
+    });
+</script>

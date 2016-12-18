@@ -120,11 +120,11 @@ class WorkflowsController < ApplicationController
       params[:workflow].permit(:workflow, :id, :name, :type, :description, :_destroy,
                     step_definitions: [ :id, :order, :workflow_id, 
                             field_definitions: 
-                            [:id, :name, :field_type, :validationRegex, :required, :errorMessage, :order]
+                            [:id, :name, :field_type, :validationRegex, :required, :errorMessage, :order, :options]
                       ],
                       step_definitions_attributes: [ :id, :order, :workflow_id, :_destroy, 
                             field_definitions_attributes: 
-                            [:id, :name, :field_type, :validationRegex, :required, :errorMessage, :order, :_destroy, :step_definition_id]
+                            [:id, :name, :field_type, :validationRegex, :required, :errorMessage, :order, :_destroy, :step_definition_id, :options]
                       ])
     end
 end

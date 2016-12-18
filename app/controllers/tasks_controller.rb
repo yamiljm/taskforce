@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     if params[:user_id] 
       user = User.find(params[:user_id])
       if user != nil
-        @tasks = user.tasks
+        @tasks = user.tasks.order(created_at: :desc)
       else
         @tasks = []
       end
@@ -130,12 +130,12 @@ class TasksController < ApplicationController
                     task: [:id, :name, :task_type, :description, :status, :currentStep, :user_id, :previus_user_id,
                         steps: [ :id, :order, :task_id, 
                             fields: 
-                            [:id, :name, :fieldType, :validationRegex, :required, :errorMessage, :order, :value, :step_id]
+                            [:id, :name, :fieldType, :validationRegex, :required, :errorMessage, :order, :value, :step_id, :options]
 
                       ]],
                     steps: [ :id, :order, :task_id, 
                             fields: 
-                            [:id, :name, :fieldType, :validationRegex, :required, :errorMessage, :order, :value, :step_id]
+                            [:id, :name, :fieldType, :validationRegex, :required, :errorMessage, :order, :value, :step_id, :options]
                       ])
     end
 end
