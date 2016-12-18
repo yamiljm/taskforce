@@ -66,13 +66,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    #Diferencia si viene de un json o de un form
-
-    puts "TASK PARAMS"
-    puts task_params.to_json
-
-    puts "----------------------"
-
+    
     if (!task_params[:task].blank? ) 
       if task_params[:steps].nil?
         task_attributes = task_params[:task]
@@ -84,18 +78,16 @@ class TasksController < ApplicationController
       task_attributes = task_params
     end
 
-    previus_user_id = task_attributes.delete("previus_user_id")
-
     steps_attributes = task_attributes.delete("steps")
 
     Step.updateSteps(steps_attributes)
 
+    agent = task_attributes.delete('agent')
+
     respond_to do |format|
-      puts "TASK ATTRIBUTES "
-      puts task_attributes.to_json
       if @task.update(task_attributes)
 
-        if PushNotificationHelper.shouldSendNotification(@task, previus_user_id)
+        if PushNotificationHelper.shouldSendNotification(agent)
           PushNotificationHelper.sendNotification(@task)
         end
 
@@ -126,8 +118,8 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.permit(:id, :name, :task_type, :description, :status, :currentStep, :user_id, :previus_user_id, 
-                    task: [:id, :name, :task_type, :description, :status, :currentStep, :user_id, :previus_user_id,
+      params.permit(:id, :name, :task_type, :description, :status, :currentStep, :user_id, :agent,
+                    task: [:id, :name, :task_type, :description, :status, :currentStep, :user_id, :agent,
                         steps: [ :id, :order, :task_id, 
                             fields: 
                             [:id, :name, :fieldType, :validationRegex, :required, :errorMessage, :order, :value, :step_id, :options]

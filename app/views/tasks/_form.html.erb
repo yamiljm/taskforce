@@ -73,11 +73,10 @@
 
   <div class="form-group">
     <div class="col-lg-10">
-      <%= f.hidden_field :user_id, :class => 'form-control', :id => "task_previus_user_id", :name => "task[previus_user_id]" %>
+      <%= f.hidden_field :agent, :class => 'form-control', :value => 'yes' %>
     </div>
-    <%=f.error_span(:user_id) %>
+    <%=f.error_span(:agent) %>
   </div>
- 
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
