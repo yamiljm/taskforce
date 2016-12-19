@@ -11,7 +11,7 @@ module PushNotificationHelper
 		Thread.new do
 			puts "--- POR MANDAR NOTIFICACION ---"
 
-			host = "http://10.0.0.5:8080"
+			host = "http://catbag.herokuapp.com"
 			path = "/v1/api/devices/send/" + task.user.registration_id
 			url = URI.parse(host + path)
 			http = Net::HTTP.new(url.host, url.port)
@@ -24,8 +24,14 @@ module PushNotificationHelper
 				when Net::HTTPSuccess, Net::HTTPRedirection
 	  				puts "--- Notificacion enviada ---"
 				else
-	  				puts "--- Notificacion no enviada ---"
+	  				puts "--- Notificacion enviada pero se recibió error---"
+	  				puts "REQUEST: " 
+					puts request.to_json
+					puts "RESPONSE. CODE: " + response.code
+					puts response.to_json
+					puts response.body
 			end
 		end
 	end
 end
+
