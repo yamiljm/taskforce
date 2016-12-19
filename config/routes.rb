@@ -40,9 +40,8 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   get 'users/:user_id/task_from_workflow/:workflow_id', to: 'tasks#create_from_workflow'
-  # get 'task_from_workflow/:workflow_id', to: 'tasks#create_from_workflow'
 
-  root 'workflows#index'
+  root 'sessions#new'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  layout "login"
+
   def new
   end
 
@@ -11,7 +14,7 @@ class SessionsController < ApplicationController
         @user.registration_id = params[:session][:registrationId]
         @user.save
 	      log_in @user
-	      format.html { redirect_to @user }
+	      format.html { redirect_to workflows_path }
         format.json {render :json => @user, :except=>  [:password]  }
 	    else
 	      format.html { redirect_to root_path, :flash => { :notice => "Invalid email/password combination" }  }

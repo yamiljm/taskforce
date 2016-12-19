@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
     has_many :tasks
 
     def authenticate(password)
-    	return true
+    	return self.password == password
     end
 
     def to_s
