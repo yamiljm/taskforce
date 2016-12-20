@@ -30,7 +30,7 @@
 		  <div class="type-container">
 			  <div class="field col-sm-2">
 			    <%= f.label :type %><br>
-			    <%= f.select :field_type, ["TEXT", "OPTIONS", "NUMBER", "BOOLEAN"], selected: f.object.field_type %>
+			    <%= f.select :field_type, ["TEXT", "OPTIONS", "BOOLEAN"], selected: f.object.field_type %>
 			  </div>
 			  <div class="field col-sm-4 option-values" style="display:<%=FieldDefinitionsHelper.optionsStyle(f.object.field_type)%>;">
 			    <%= f.label :options %><br>
